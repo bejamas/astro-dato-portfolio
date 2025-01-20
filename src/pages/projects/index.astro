@@ -30,9 +30,7 @@ const { allProjects } = await queryCMS(query);
     <h1 class="text-4xl font-bold mb-8 uppercase bg-foreground text-background inline-block p-4">My Projects</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {allProjects.map((project) => (
-        <div class="border border-border p-4">
-          <ProjectCard project={project} />
-        </div>
+        <ProjectCard project={project} />
       ))}
     </div>
   </div>
