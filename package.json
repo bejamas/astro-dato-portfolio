@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.2",
+    "@astrojs/vercel": "^8.0.2",
     "@datocms/astro": "^0.4.1",
     "@datocms/cda-client": "^0.2.5",
-    "astro": "^4.16.10",
+    "astro": "^5.1.7",
     "tailwindcss": "^3.4.15"
   }
 }
