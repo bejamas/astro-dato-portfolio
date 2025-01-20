@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { queryCMS } from '../lib/cms';
+import { StructuredText } from '@datocms/astro';
+import TestimonialShowcase from '../components/TestimonialShowcase.astro';
+
+const query = `
+  query {
+    profile {
+      name
+      headline
+      shortBio
+      longBio {
+        value
+      }
+      profileImage {
+        url
+        alt
+      }
+    }
+  }
+`;
+
+const { profile } = await queryCMS(query);
+---
+
+<Layout title={profile.name}>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8 uppercase bg-foreground text-background inline-block p-4">{profile.name}</h1>
+    <div class="flex flex-col md:flex-row gap-8 mb-12">
+      <div class="md:w-1/3">
+        <img 
+          src={profile.profileImage.url || "/placeholder.svg"} 
+          alt={profile.profileImage.alt} 
+          class="w-full border border-border"
+        />
+      </div>
+      <div class="md:w-2/3">
+        <p class="text-2xl mb-4 bg-foreground text-background inline-block p-2">{profile.headline}</p>
+        <p class="mb-6 text-lg">{profile.shortBio}</p>
+        <div class="prose prose-invert max-w-none">
+          <StructuredText data={profile.longBio} />
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-border pt-12">
+      <TestimonialShowcase />
+    </div>
+  </div>
+</Layout>
+

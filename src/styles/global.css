@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: "Roboto", sans-serif;
+
+    /* Base dark background */
+    --color-background: 252 56% 2%; /* Dark background */
+    --color-foreground: 260 12% 90%; /* High contrast for text/icons */
+
+    /* Card and popover */
+    --color-card: 255 11% 7%; /* Slightly lighter than background for cards */
+    --color-card-foreground: 260 12% 90%; /* Same as foreground for readability */
+    --color-popover: 255 11% 7%; /* Matches card for consistent UI */
+    --color-popover-foreground: 260 12% 90%; /* Matches card foreground */
+
+    /* Primary */
+    --color-primary: 262 83% 58%; /* Vibrant violet for standout elements */
+    --color-primary-foreground: 0 0% 100%; /* High-contrast white for text/icons on primary */
+
+    /* Secondary */
+    --color-secondary: 239 84% 67%; /* Softer blue for secondary actions */
+    --color-secondary-foreground: 0 0% 100%; /* High-contrast white */
+
+    /* Muted */
+    --color-muted: 240 6% 25%; /* Subdued gray for less prominent elements */
+    --color-muted-foreground: 240 11% 67%; /* Light muted text */
+
+    /* Accent */
+    --color-accent: 142 71% 45%; /* Bright green for accents (e.g., success or highlights) */
+    --color-accent-foreground: 0 0% 100%; /* High-contrast white */
+
+    /* Destructive */
+    --color-destructive: 0 84% 60%; /* Vivid red for errors or destructive actions */
+    --color-destructive-foreground: 0 0% 100%; /* White for clarity */
+
+    /* Borders and inputs */
+    --color-border: 240 8% 17%; /* Neutral dark border color */
+    --color-input: 240 6% 25%; /* Matches muted for input backgrounds */
+
+    /* Ring (focus outlines) */
+    --color-ring: 262 83% 58%; /* Matches primary for visual consistency */
+
+    /* Radius (optional for UI elements) */
+    --radius: 0.75rem; /* Standard border radius for modern UI */
+  }
+
+  .dark {
+    --color-background: #ffffff;
+    --color-foreground: #030207;
+    --color-card: #f9f9fb;
+    --color-card-foreground: #030207;
+    --color-popover: #f9f9fb;
+    --color-popover-foreground: #030207;
+    --color-primary: #7c3aed;
+    --color-primary-foreground: #ffffff;
+    --color-secondary: #6366f1;
+    --color-secondary-foreground: #ffffff;
+    --color-muted: #e5e7eb;
+    --color-muted-foreground: #6b7280;
+    --color-accent: #22c55e;
+    --color-accent-foreground: #ffffff;
+    --color-destructive: #ef4444;
+    --color-destructive-foreground: #ffffff;
+    --color-border: #d1d5db;
+    --color-input: #f3f4f6;
+    --color-ring: #7c3aed;
+    --radius: 0.75rem;
+  }  
+}

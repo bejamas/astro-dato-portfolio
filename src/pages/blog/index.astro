@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { queryCMS } from '../../lib/cms';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+
+const query = `
+  query {
+    allBlogs {
+      id
+      title
+      slug
+      categories {
+        title
+        slug
+      }
+      featuredImage {
+        url
+        alt
+      }
+    }
+  }
+`;
+
+const { allBlogs } = await queryCMS(query);
+---
+
+<Layout title="Blog">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8 uppercase bg-foreground text-background inline-block p-4">Blog Posts</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {allBlogs.map((blogPost) => (
+        <div class="border border-border p-4">
+          <BlogPostCard blogPost={blogPost} />
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+

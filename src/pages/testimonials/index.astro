@@ -1,0 +1,30 @@
+---
+import { queryCMS } from '../../lib/cms';
+import Layout from '../../layouts/Layout.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+
+const query = `
+  query {
+    allTestimonials {
+      clientNameRole
+      testimonialText
+    }
+  }
+`;
+
+const { allTestimonials } = await queryCMS(query);
+---
+
+<Layout title="Testimonials">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8 uppercase bg-foreground text-background inline-block p-4">Testimonials</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {allTestimonials.map((testimonial) => (
+        <div class="border border-border p-4">
+          <TestimonialCard testimonial={testimonial} />
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+

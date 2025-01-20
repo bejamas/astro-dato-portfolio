@@ -1,0 +1,27 @@
+---
+const navItems = [
+  { href: '/', text: 'Home' },
+  { href: '/projects', text: 'Projects' },
+  { href: '/blog', text: 'Blog' },
+  { href: '/about', text: 'About' },
+];
+---
+
+<header class="py-4 border-b border-border">
+  <nav class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+    <a href="/" class="text-3xl font-bold uppercase mb-4 md:mb-0">Your Name</a>
+    <ul class="flex flex-wrap justify-center gap-4">
+      {navItems.map((item) => (
+        <li>
+          <a 
+            href={item.href} 
+            class="text-xl uppercase hover:bg-foreground hover:text-background transition-colors p-2"
+          >
+            {item.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+

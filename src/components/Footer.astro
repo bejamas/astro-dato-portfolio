@@ -1,0 +1,19 @@
+---
+import { queryCMS } from '../lib/cms';
+
+const query = `
+  query {
+    profile {
+      name
+    }
+  }
+`;
+
+const { profile } = await queryCMS(query);
+---
+
+<footer class="py-4 border-t border-border mt-8">
+  <div class="container mx-auto px-4 text-center">
+    <p class="text-xl">&copy; {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
+  </div>
+</footer>

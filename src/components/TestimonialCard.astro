@@ -1,0 +1,11 @@
+---
+const { testimonial } = Astro.props;
+---
+
+<div class="border border-border p-6 h-full flex flex-col">
+  <p class="text-lg mb-4 italic flex-grow">{testimonial.testimonialText}</p>
+  <div class="mt-auto">
+    <p class="font-bold text-foreground">{testimonial.clientNameRole}</p>
+  </div>
+</div>
+

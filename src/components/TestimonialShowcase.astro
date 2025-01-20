@@ -1,0 +1,25 @@
+---
+import { queryCMS } from '../lib/cms';
+import TestimonialCard from './TestimonialCard.astro';
+
+const query = `
+  query {
+    allTestimonials(first: 3, orderBy: _createdAt_DESC) {
+      clientNameRole
+      testimonialText
+    }
+  }
+`;
+
+const { allTestimonials } = await queryCMS(query);
+---
+
+<section class="my-16">
+  <h2 class="text-3xl font-bold mb-8 uppercase bg-foreground text-background inline-block p-3">Client Testimonials</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {allTestimonials.map((testimonial) => <TestimonialCard testimonial={testimonial} />)}
+  </div>
+  <div class="text-center mt-8">
+    <a href="/testimonials" class="inline-block border border-foreground px-6 py-3 text-foreground hover:bg-foreground hover:text-background transition-colors uppercase">View All Testimonials</a>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import { queryCMS } from '../../lib/cms';
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const query = `
+  query {
+    allProjects {
+      id
+      title
+      slug
+      categories {
+        title
+        slug
+      }
+      media {
+        url
+        alt
+      }
+    }
+  }
+`;
+
+const { allProjects } = await queryCMS(query);
+
+---
+
+<Layout title="Projects">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8 uppercase bg-foreground text-background inline-block p-4">My Projects</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {allProjects.map((project) => (
+        <div class="border border-border p-4">
+          <ProjectCard project={project} />
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
