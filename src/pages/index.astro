@@ -55,7 +55,7 @@ const { profile, allProjects, allBlogs } = await queryCMS(query);
 <Layout title="Home">
   <div class="container mx-auto px-4 py-8">
     <section class="mb-16 grid grid-cols-1 md:grid-cols-3 gap-8 border border-border p-8">
-      <div class="md:col-span-2 flex flex-col justify-center">
+      <div class="md:col-span-2 flex flex-col justify-center items-start">
         <h1 class="text-6xl font-bold mb-4 uppercase">{profile.name}</h1>
         <p class="text-2xl mb-4 bg-foreground text-background inline-block p-2">{profile.headline}</p>
         <p class="mb-4 text-lg">{profile.shortBio}</p>
@@ -70,9 +70,7 @@ const { profile, allProjects, allBlogs } = await queryCMS(query);
       <h2 class="text-4xl font-bold mb-8 uppercase bg-foreground text-background inline-block p-4">Latest Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {allProjects.map((project) => (
-          <div class="border border-border p-4">
-            <ProjectCard project={project} />
-          </div>
+          <ProjectCard project={project} />
         ))}
       </div>
     </section>
@@ -81,9 +79,7 @@ const { profile, allProjects, allBlogs } = await queryCMS(query);
       <h2 class="text-4xl font-bold mb-8 uppercase bg-foreground text-background inline-block p-4">Recent Blog Posts</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {allBlogs.map((blogPost) => (
-          <div class="border border-border p-4">
-            <BlogPostCard blogPost={blogPost} />
-          </div>
+          <BlogPostCard blogPost={blogPost} />
         ))}
       </div>
     </section>
@@ -93,4 +89,3 @@ const { profile, allProjects, allBlogs } = await queryCMS(query);
     </section>
   </div>
 </Layout>
-

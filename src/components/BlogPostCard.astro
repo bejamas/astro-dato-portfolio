@@ -2,7 +2,7 @@
 const { blogPost } = Astro.props;
 ---
 
-<article class="h-full flex flex-col">
+<article class="h-full flex flex-col border border-border hover:border-white p-4">
   {blogPost.featuredImage && (
     <img 
       src={blogPost.featuredImage.url || "/placeholder.svg"} 
@@ -10,7 +10,14 @@ const { blogPost } = Astro.props;
       class="w-full h-48 object-cover mb-4"
     />
   )}
-  <h3 class="text-xl font-semibold mb-2">{blogPost.title}</h3>
+  <h3 class="text-xl font-semibold mb-2">
+    <a 
+    href={`/blog/${blogPost.slug}`} 
+    class="inline-block py-2"
+  >
+    {blogPost.title}
+  </a>
+  </h3>
   {blogPost.excerpt && <p class="text-muted-foreground mb-4">{blogPost.excerpt}</p>}
   {blogPost.categories && blogPost.categories.length > 0 && (
     <ul class="flex flex-wrap gap-2 mb-4">
@@ -21,11 +28,4 @@ const { blogPost } = Astro.props;
       ))}
     </ul>
   )}    
-  <a 
-    href={`/blog/${blogPost.slug}`} 
-    class="mt-auto inline-block bg-foreground text-background px-4 py-2 hover:bg-primary hover:text-primary-foreground transition-colors"
-  >
-    Read More
-  </a>
 </article>
-

@@ -2,7 +2,7 @@
 const { project } = Astro.props;
 ---
 
-<article class="h-full flex flex-col">
+<article class="h-full flex flex-col border border-border hover:border-white p-4">
   {project.media && project.media[0] && (
     <img 
       src={project.media[0].url || "/placeholder.svg"} 
@@ -10,7 +10,14 @@ const { project } = Astro.props;
       class="w-full h-48 object-cover mb-4"
     />
   )}
-  <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
+  <h3 class="text-xl font-semibold mb-2">
+    <a 
+    href={`/projects/${project.slug}`} 
+    class="inline-block py-2"
+  >
+    {project.title}
+    </a>
+  </h3>
   {project.excerpt && <p class="text-muted-foreground mb-4">{project.excerpt}</p>}
   {project.categories && project.categories.length > 0 && (
     <ul class="flex flex-wrap gap-2 mb-4">
@@ -21,11 +28,4 @@ const { project } = Astro.props;
       ))}
     </ul>
   )}    
-  <a 
-    href={`/projects/${project.slug}`} 
-    class="mt-auto inline-block bg-foreground text-background px-4 py-2 hover:bg-primary hover:text-primary-foreground transition-colors"
-  >
-    View Project
-  </a>
 </article>
-
