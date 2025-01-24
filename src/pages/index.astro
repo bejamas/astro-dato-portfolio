@@ -46,16 +46,23 @@ const query = `
         alt
       }
     }
+    home {
+      _seoMetaTags {
+        tag
+        attributes
+        content
+      }           
+    }
   }
 `;
 
-const { profile, allProjects, allBlogs } = await queryCMS(query);
+const { profile, allProjects, allBlogs, home } = await queryCMS(query);
 ---
 
-<Layout title="Home">
+<Layout additionalSeo={home._seoMetaTags}>
   <div class="container mx-auto px-4 py-8">
     <section class="mb-16 grid grid-cols-1 md:grid-cols-3 gap-8 border border-border p-8">
-      <div class="md:col-span-2 flex flex-col justify-center items-start">
+      <div  class="md:col-span-2 flex flex-col justify-center items-start">
         <h1 class="text-6xl font-bold mb-4 uppercase">{profile.name}</h1>
         <p class="text-2xl mb-4 bg-foreground text-background inline-block p-2">{profile.headline}</p>
         <p class="mb-4 text-lg">{profile.shortBio}</p>

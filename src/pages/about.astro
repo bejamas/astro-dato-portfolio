@@ -18,13 +18,20 @@ const query = `
         alt
       }
     }
+    aboutPage {
+      _seoMetaTags {
+        tag
+        attributes
+        content
+      }    
+    }
   }
 `;
 
-const { profile } = await queryCMS(query);
+const { profile, aboutPage } = await queryCMS(query);
 ---
 
-<Layout title={profile.name}>
+<Layout additionalSeo={aboutPage._seoMetaTags}>
   <div class="container mx-auto px-4 py-8">
     <h1 class="text-4xl font-bold mb-8 uppercase bg-foreground text-background inline-block p-4">{profile.name}</h1>
     <div class="flex flex-col md:flex-row gap-8 mb-12">

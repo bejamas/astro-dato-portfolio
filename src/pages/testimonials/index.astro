@@ -9,13 +9,20 @@ const query = `
       clientNameRole
       testimonialText
     }
+    testimonialList {
+      _seoMetaTags {
+        tag
+        attributes
+        content
+      }           
+    } 
   }
 `;
 
-const { allTestimonials } = await queryCMS(query);
+const { allTestimonials, testimonialList } = await queryCMS(query);
 ---
 
-<Layout title="Testimonials">
+<Layout additionalSeo={testimonialList._seoMetaTags}>
   <div class="container mx-auto px-4 py-8">
     <h1 class="text-4xl font-bold mb-8 uppercase bg-foreground text-background inline-block p-4">Testimonials</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
