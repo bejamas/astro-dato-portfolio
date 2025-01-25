@@ -1,13 +1,13 @@
 ---
+import { Image } from '@datocms/astro';
 const { blogPost } = Astro.props;
 ---
 
 <article class="h-full flex flex-col border border-border hover:border-white p-4">
   {blogPost.featuredImage && (
-    <img 
-      src={blogPost.featuredImage.url || "/placeholder.svg"} 
-      alt={blogPost.featuredImage.alt || blogPost.title} 
-      class="w-full h-48 object-cover mb-4"
+    <Image
+      data={blogPost.featuredImage.responsiveImage}
+      pictureClass="w-full mb-4"
     />
   )}
   <h3 class="text-xl font-semibold mb-2">

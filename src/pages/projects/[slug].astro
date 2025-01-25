@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { queryCMS } from '../../lib/cms';
 import { StructuredText } from '@datocms/astro';
+import { Image } from '@datocms/astro';
 import TestimonialShowcase from '../../components/TestimonialShowcase.astro';
 
 export async function getStaticPaths() {
@@ -30,8 +31,14 @@ const query = `
         slug
       }
       media {
-        url
-        alt
+        responsiveImage(imgixParams: { fit: max, auto: format }) {
+          src
+          width
+          height
+          alt
+          title
+          base64
+        }
       }
       categories {
         title
@@ -60,11 +67,10 @@ if (!project) {
     <h1 class="text-4xl font-bold mb-6 uppercase bg-foreground text-background inline-block p-4">{project.title}</h1>
     
     {project.media && project.media.length > 0 && (
-      <img 
-        src={project.media[0].url || "/placeholder.svg"} 
-        alt={project.media[0].alt || project.title} 
-        class="w-full h-64 object-cover mb-6 border border-border"
-      />
+      <Image
+        data={project.media[0].responsiveImage}
+        pictureClass="w-full mb-4 mb-6 border border-border"
+      />          
     )}
     
     <div class="prose prose-invert max-w-none mb-8">

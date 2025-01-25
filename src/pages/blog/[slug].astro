@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { queryCMS } from '../../lib/cms';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 import { StructuredText } from '@datocms/astro';
+import { Image } from '@datocms/astro';
 
 export async function getStaticPaths() {
   const allBlogsQuery = `
@@ -37,8 +38,14 @@ const query = `
         slug
       }
       featuredImage {
-        url
-        alt
+        responsiveImage(imgixParams: { fit: max, auto: format }) {
+          src
+          width
+          height
+          alt
+          title
+          base64
+        }
       }
       content {
         value
@@ -49,8 +56,14 @@ const query = `
           title
           slug
           featuredImage {
-            url
-            alt
+            responsiveImage(imgixParams: { fit: max, auto: format }) {
+              src
+              width
+              height
+              alt
+              title
+              base64
+            }
           }
           categories {
             title
@@ -100,11 +113,10 @@ const formattedDate = new Date(blog.publishDate).toLocaleDateString('en-US', {
     </div>
     
     {blog.featuredImage && (
-      <img 
-        src={blog.featuredImage.url || "/placeholder.svg"} 
-        alt={blog.featuredImage.alt || blog.title} 
-        class="w-full h-64 object-cover mb-6 border border-border"
-      />
+      <Image
+        data={blog.featuredImage.responsiveImage}
+        pictureClass="w-full mb-4 mb-6 border border-border"
+      />      
     )}
     
     {blog.categories && blog.categories.length > 0 && (

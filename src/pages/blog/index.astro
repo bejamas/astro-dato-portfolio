@@ -14,8 +14,14 @@ const query = `
         slug
       }
       featuredImage {
-        url
-        alt
+        responsiveImage(imgixParams: { fit: max, auto: format }) {
+          src
+          width
+          height
+          alt
+          title
+          base64
+        }
       }      
     }
     blogList {
