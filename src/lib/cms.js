@@ -9,14 +9,17 @@ export async function queryCMS(query, variables = {}) {
 
   try {
     // Pass the query, variables, and token to executeQuery
-    const result = await executeQuery(query, {
-      token,
-      variables
-    });
+    const result = await executeQuery(
+      query,
+      {
+        token,
+        variables,
+        includeDrafts: false
+      });
 
     return result;
   } catch (error) {
     console.error('Error querying DatoCMS:', error);
-    throw new Error('Failed to fetch data from DatoCMS');
+    throw new Error('Failedd to fetch data from DatoCMS');
   }
 }
