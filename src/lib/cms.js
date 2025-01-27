@@ -16,7 +16,7 @@ export async function queryCMS(query, variables = {}) {
         variables,
         includeDrafts: false
       });
-
+      
     return result;
   } catch (error) {
     console.error('Error querying DatoCMS:', error);

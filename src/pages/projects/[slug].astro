@@ -4,6 +4,8 @@ import { queryCMS } from '../../lib/cms';
 import { StructuredText } from '@datocms/astro';
 import { Image } from '@datocms/astro';
 import TestimonialShowcase from '../../components/TestimonialShowcase.astro';
+import ImageBlock from '../../components/blocks/Image.astro';
+import Cta from '../../components/blocks/Cta.astro';
 
 export async function getStaticPaths() {
   const allProjectsQuery = `
@@ -25,6 +27,22 @@ const query = `
       title
       content {
         value
+        blocks {
+          ... on RecordInterface {
+            id
+            __typename
+          }
+          ... on ImageRecord {
+            image {
+              url
+              alt
+            }
+          }
+          ... on CtaRecord {
+            label
+            href
+          }
+        }
       }
       relatedProjects {
         title
@@ -64,6 +82,7 @@ if (!project) {
 
 <Layout additionalSeo={project._seoMetaTags}>
   <div class="container mx-auto px-4 py-8">
+
     <h1 class="text-4xl font-bold mb-6 uppercase bg-foreground text-background inline-block p-4">{project.title}</h1>
     
     {project.media && project.media.length > 0 && (
@@ -74,7 +93,14 @@ if (!project) {
     )}
     
     <div class="prose prose-invert max-w-none mb-8">
-      <StructuredText data={project.content} />
+      <StructuredText
+        data={project.content}
+        blockComponents={
+         {
+           ImageRecord: ImageBlock,
+           CtaRecord: Cta
+         }}
+      />
     </div>
     
     {project.categories && project.categories.length > 0 && (

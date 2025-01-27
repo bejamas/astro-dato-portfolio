@@ -4,6 +4,7 @@ import { queryCMS } from '../../lib/cms';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 import { StructuredText } from '@datocms/astro';
 import { Image } from '@datocms/astro';
+import ImageBlock from '../../components/blocks/Image.astro';
 
 export async function getStaticPaths() {
   const allBlogsQuery = `
@@ -49,6 +50,18 @@ const query = `
       }
       content {
         value
+        blocks {
+          ... on RecordInterface {
+            id
+            __typename
+          }
+          ... on ImageRecord {
+            image {
+              url
+              alt
+            }
+          }
+        }
       }
       relatedContent {
         ... on BlogRecord {
@@ -134,6 +147,10 @@ const formattedDate = new Date(blog.publishDate).toLocaleDateString('en-US', {
     <div class="prose prose-invert max-w-none mb-8">
       <StructuredText
         data={blog.content}
+        blockComponents={
+        {
+          ImageRecord: ImageBlock
+        }}
       />
     </div>
     
