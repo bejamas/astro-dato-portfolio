@@ -1,0 +1,9 @@
+---
+const { index, text } = Astro.props;
+const underscored = text.split(' ').join('<span class="text-primary">_</span>');
+
+---
+
+<h2 class="p-4 text-sm uppercase" set:html={underscored}>
+  <span class="me-3 text-muted">{index} /</span>
+</h2>

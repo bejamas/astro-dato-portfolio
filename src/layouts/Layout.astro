@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import  Line  from "../components/Line.astro";
 import { queryCMS } from '../lib/cms';
 import { Seo } from '@datocms/astro';
 import '../styles/global.css';
@@ -33,6 +34,7 @@ const { additionalSeo } = Astro.props;
     <main class="flex-grow">
       <slot />
     </main>
+    <Line />
     <Footer />
   </body>
 </html>

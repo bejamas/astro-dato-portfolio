@@ -17,7 +17,7 @@
     --color-popover-foreground: 260 12% 90%; /* Matches card foreground */
 
     /* Primary */
-    --color-primary: 262 83% 58%; /* Vibrant violet for standout elements */
+    --color-primary: 85 92% 75%; /* For standout elements */
     --color-primary-foreground: 0 0% 100%; /* High-contrast white for text/icons on primary */
 
     /* Secondary */
@@ -25,7 +25,7 @@
     --color-secondary-foreground: 0 0% 100%; /* High-contrast white */
 
     /* Muted */
-    --color-muted: 240 6% 25%; /* Subdued gray for less prominent elements */
+    --color-muted: 0deg 0% 100% / 60%; /* Subdued gray for less prominent elements */
     --color-muted-foreground: 240 11% 67%; /* Light muted text */
 
     /* Accent */
@@ -68,5 +68,5 @@
     --color-input: #f3f4f6;
     --color-ring: #7c3aed;
     --radius: 0.75rem;
-  }  
+  }
 }

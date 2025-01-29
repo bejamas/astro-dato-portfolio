@@ -1,28 +1,44 @@
 ---
-import { Image } from '@datocms/astro';
 const { blogPost } = Astro.props;
 ---
 
-<article class="h-full flex flex-col border border-border hover:border-white p-4">
-  {blogPost.featuredImage && (
-    <Image
-      data={blogPost.featuredImage.responsiveImage}
-      pictureClass="w-full mb-4"
-    />
-  )}
-  <h3 class="text-xl font-semibold mb-2">
-    <a 
-    href={`/blog/${blogPost.slug}`} 
-    class="inline-block py-2"
-  >
-    {blogPost.title}
-  </a>
+<style>
+  .blog-post-card {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    border-radius: 1px;
+    background: #1E1E1E;
+
+    & h3 {
+      color: #FFF;
+      font-size: 12px;
+    }
+
+    & ul {
+      display: flex;
+      gap: 10px;
+    }
+
+    & ul a {
+      font-size: 10px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+  }
+</style>
+
+<article class="blog-post-card">
+  <h3>
+    <a href={`/blog/${blogPost.slug}`}>{blogPost.title}</a>
   </h3>
-  {blogPost.excerpt && <p class="text-muted-foreground mb-4">{blogPost.excerpt}</p>}
   {blogPost.categories && blogPost.categories.length > 0 && (
-    <ul class="flex flex-wrap gap-2 mb-4">
+    <ul>
       {blogPost.categories.map(category => (
-        <li class="bg-muted text-muted-foreground px-3 py-1 text-sm">
+        <li>
           <a href={`/categories/${category.slug}`}>{category.title}</a>
         </li>
       ))}

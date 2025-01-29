@@ -3,6 +3,16 @@ export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      container: {
+        center: true,
+        screens: {
+          sm: "600px",
+          md: "668px",
+          lg: "668px",
+          xl: "668px",
+          "2xl": "668px"
+        }
+      },
       colors: {
         border: "hsl(var(--color-border))",
         input: "hsl(var(--color-input))",
